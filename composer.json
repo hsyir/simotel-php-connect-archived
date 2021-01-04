@@ -1,0 +1,18 @@
+{
+  "name": "hsyir/simotel-php-connect",
+  "description": "Keep connected with simotel in php",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hossein",
+      "email": "hosseinyaghmaee@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "\\Hsy\\Simotel\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {}
+}
