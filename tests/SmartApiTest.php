@@ -31,7 +31,7 @@ class SmartApiTest extends TestCase
 
         $this->assertJson($response->toJson());
 
-        $response=$response->toArray();
+        $response = $response->toArray();
         $this->assertIsArray($response);
         $this->assertArrayHasKey("commands", $response);
         $this->assertArrayHasKey("ok", $response);
@@ -47,15 +47,21 @@ class SmartApiTest extends TestCase
 
         $simotel = new Simotel($this->config);
         $response = $simotel->smartApiCall($appData)->toArray();
-        var_dump($response);
-        $this->assertEquals(["ok"=>0],$response);
-
+        $this->assertEquals(["ok" => 0], $response);
     }
 
 
-    public function testCommands()
+    public function testPlayAnnouncementCommand()
     {
+        $appData = [
+            "app_name" => "playAnnounceApp",
+            "data"=> "welcome"
+        ];
 
+        $simotel = new Simotel($this->config);
+        $response = $simotel->smartApiCall($appData)->toArray();
+
+        $this->assertEquals(["ok" => 1, "commands" => "PlayAnnouncement('welcome')"], $response);
     }
 }
 
@@ -79,5 +85,9 @@ class RestOfApps
         return $this->errorResponse();
     }
 
-
+    public function playAnnounceApp($appData)
+    {
+        $this->cmdPlayAnnouncement($appData['data']);
+        return $this->okResponse();
+    }
 }
