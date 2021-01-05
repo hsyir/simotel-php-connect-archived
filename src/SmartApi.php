@@ -45,6 +45,11 @@ class SmartApi
 
     public function __toString()
     {
+        return $this->toJson();
+    }
+
+    public function toJson()
+    {
         return json_encode($this->response);
     }
 
