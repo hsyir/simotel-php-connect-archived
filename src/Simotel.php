@@ -33,9 +33,17 @@ class Simotel
         return dirname(__DIR__) . '/config/simotel.php';
     }
 
-
     public function smartApiCall($data)
     {
-        return (new SmartApi($this->config["smartApi"]))->call($data);
+        $smartApi = new SmartApi($this->config["smartApi"] ?? []);
+        return $smartApi->call($data);
+    }
+
+    /**
+     * @return SimotelApi
+     */
+    public function connect()
+    {
+        return new SimotelApi($this->config["simotelApi"]);
     }
 }
