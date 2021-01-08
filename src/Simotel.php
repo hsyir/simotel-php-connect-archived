@@ -46,4 +46,10 @@ class Simotel
     {
         return new SimotelApi($this->config["simotelApi"]);
     }
+
+    public function eventApi()
+    {
+        return new SimotelEventApi();
+    }
+
 }
