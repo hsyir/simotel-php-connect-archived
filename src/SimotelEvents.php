@@ -46,11 +46,11 @@ trait SimotelEvents
      *
      * @param string $event
      * @param $data
+     *
      * @return void
      */
     protected function dispatchEvent(string $event, $data)
     {
-
         static::singletoneEventEmitter();
 
         static::$eventEmitter->dispatch($event, $data);
@@ -67,6 +67,6 @@ trait SimotelEvents
             return;
         }
 
-        static::$eventEmitter = new EventEmitter;
+        static::$eventEmitter = new EventEmitter();
     }
 }

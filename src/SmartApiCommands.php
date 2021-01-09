@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel;
-
 
 trait SmartApiCommands
 {
@@ -15,20 +13,21 @@ trait SmartApiCommands
 
     private function render()
     {
-        $commands = implode(";", $this->apiCommands);
+        $commands = implode(';', $this->apiCommands);
         $this->apiCommands = [];
+
         return $commands;
     }
 
     private function okResponse()
     {
-        return ["ok" => 1,
-            "commands" => $this->render()];
+        return ['ok'   => 1,
+            'commands' => $this->render(), ];
     }
 
     private function errorResponse()
     {
-        return ["ok" => 0];
+        return ['ok' => 0];
     }
 
     /*
@@ -82,7 +81,7 @@ trait SmartApiCommands
     /*
      *
      */
-    private function cmdSayDate($date,$calender)
+    private function cmdSayDate($date, $calender)
     {
         $this->addCommand("SayDate('$date','$calender')");
     }
@@ -90,7 +89,7 @@ trait SmartApiCommands
     /*
      *
      */
-    private function cmdGetData($file,$timeout,$digitsCount)
+    private function cmdGetData($file, $timeout, $digitsCount)
     {
         $this->addCommand("GetData('$file',$timeout,$digitsCount)");
     }

@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Hsy\Simotel\Tests;
 
-
 use Hsy\Simotel\Simotel;
-use Hsy\Simotel\SmartApiCommands;
 
 class SimotelEventApiTest extends TestCase
 {
@@ -13,24 +10,24 @@ class SimotelEventApiTest extends TestCase
     {
         $simotel = new Simotel();
 
-        $simotel->eventApi()->addListener("CDR", function ($data) {
-            $this->assertEquals($data["data1"], "testData1");
+        $simotel->eventApi()->addListener('CDR', function ($data) {
+            $this->assertEquals($data['data1'], 'testData1');
         });
 
-        $simotel->eventApi()->addListener("CDR", function ($data) {
-            $this->assertEquals($data["data2"], "testData2");
+        $simotel->eventApi()->addListener('CDR', function ($data) {
+            $this->assertEquals($data['data2'], 'testData2');
         });
 
-        $simotel->eventApi()->addListener("CDR", function ($data) {
-            $this->assertNotEquals($data["data3"], "wrongData");
+        $simotel->eventApi()->addListener('CDR', function ($data) {
+            $this->assertNotEquals($data['data3'], 'wrongData');
         });
 
         // pass data to CDR listener
         $data = [
-            "data1" => "testData1",
-            "data2" => "testData2",
-            "data3" => "testData3"
+            'data1' => 'testData1',
+            'data2' => 'testData2',
+            'data3' => 'testData3',
         ];
-        $simotel->eventApi()->dispatch("CDR", $data);
+        $simotel->eventApi()->dispatch('CDR', $data);
     }
 }

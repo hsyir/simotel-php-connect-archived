@@ -1,16 +1,15 @@
 <?php
 
 return [
-    "smartApi" => [
-        "apps" =>
-            [
-                "*" => "\App\Simotel\SmartApiApps",
-            ]
+    'smartApi' => [
+        'apps' => [
+            '*' => "\App\Simotel\SmartApiApps",
+        ],
     ],
-    "simotelApi" => [
-        "user" => "username",
-        "pass" => "password",
-        "requestMethod" => "POST",
-        "serverAddress" => "http://serverAddress",
-    ]
+    'simotelApi' => [
+        'user'          => 'username',
+        'pass'          => 'password',
+        'requestMethod' => 'POST',
+        'serverAddress' => 'http://serverAddress',
+    ],
 ];

@@ -2,7 +2,6 @@
 
 namespace Hsy\Simotel;
 
-
 class SimotelEventApi
 {
     use SimotelEvents;
