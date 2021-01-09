@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel\Tests;
-
 
 use Hsy\Simotel\Simotel;
 use Hsy\Simotel\SmartApiCommands;
@@ -10,20 +8,19 @@ use Hsy\Simotel\SmartApiCommands;
 class SmartApiTest extends TestCase
 {
     private $config = [
-        "smartApi" => [
-            "appClasses" => [
-                "fooApp" => FooSmartApi::class,
-                "*" => RestOfApps::class,
-            ]
-        ]
+        'smartApi' => [
+            'appClasses' => [
+                'fooApp' => FooSmartApi::class,
+                '*'      => RestOfApps::class,
+            ],
+        ],
     ];
-
 
     public function testResponse()
     {
         $appData = [
-            "app_name" => "fooApp",
-            "data" => "foo"
+            'app_name' => 'fooApp',
+            'data'     => 'foo',
         ];
 
         $simotel = new Simotel($this->config);
@@ -33,35 +30,32 @@ class SmartApiTest extends TestCase
 
         $response = $response->toArray();
         $this->assertIsArray($response);
-        $this->assertArrayHasKey("commands", $response);
-        $this->assertArrayHasKey("ok", $response);
-
+        $this->assertArrayHasKey('commands', $response);
+        $this->assertArrayHasKey('ok', $response);
     }
-
 
     public function testNoOkResponse()
     {
         $appData = [
-            "app_name" => "barApp",
+            'app_name' => 'barApp',
         ];
 
         $simotel = new Simotel($this->config);
         $response = $simotel->smartApiCall($appData)->toArray();
-        $this->assertEquals(["ok" => 0], $response);
+        $this->assertEquals(['ok' => 0], $response);
     }
-
 
     public function testPlayAnnouncementCommand()
     {
         $appData = [
-            "app_name" => "playAnnounceApp",
-            "data"=> "welcome"
+            'app_name' => 'playAnnounceApp',
+            'data'     => 'welcome',
         ];
 
         $simotel = new Simotel($this->config);
         $response = $simotel->smartApiCall($appData)->toArray();
 
-        $this->assertEquals(["ok" => 1, "commands" => "PlayAnnouncement('welcome')"], $response);
+        $this->assertEquals(['ok' => 1, 'commands' => "PlayAnnouncement('welcome')"], $response);
     }
 }
 
@@ -72,6 +66,7 @@ class FooSmartApi
     public function fooApp()
     {
         $this->cmdExit(1);
+
         return $this->okResponse();
     }
 }
@@ -88,6 +83,7 @@ class RestOfApps
     public function playAnnounceApp($appData)
     {
         $this->cmdPlayAnnouncement($appData['data']);
+
         return $this->okResponse();
     }
 }
