@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel;
-
 
 class Simotel
 {
@@ -20,7 +18,7 @@ class Simotel
      */
     protected function loadDefaultConfig(): array
     {
-        return require(static::getDefaultConfigPath());
+        return require static::getDefaultConfigPath();
     }
 
     /**
@@ -30,12 +28,13 @@ class Simotel
      */
     public static function getDefaultConfigPath(): string
     {
-        return dirname(__DIR__) . '/config/simotel.php';
+        return dirname(__DIR__).'/config/simotel.php';
     }
 
     public function smartApiCall($data)
     {
-        $smartApi = new SmartApi($this->config["smartApi"] ?? []);
+        $smartApi = new SmartApi($this->config['smartApi'] ?? []);
+
         return $smartApi->call($data);
     }
 
@@ -44,12 +43,11 @@ class Simotel
      */
     public function connect()
     {
-        return new SimotelApi($this->config["simotelApi"]);
+        return new SimotelApi($this->config['simotelApi']);
     }
 
     public function eventApi()
     {
         return new SimotelEventApi();
     }
-
 }

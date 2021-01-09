@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel;
-
 
 class SmartApi
 {
@@ -15,28 +13,32 @@ class SmartApi
         $this->config = $smartApiConfig;
     }
 
-
     /**
      * @param $data
+     *
      * @return $this|bool
      */
     public function call($data)
     {
-        $appName = $data['app_name'] ?? "";
-        if (!$appName)
+        $appName = $data['app_name'] ?? '';
+        if (!$appName) {
             return $this->fail("SmartApi data has not 'app_name' index");
+        }
 
         $className = $this->findAppClass($appName);
-        if (!$className)
+        if (!$className) {
             return false;
+        }
 
-        $class = new $className;
-        if (!method_exists($class, $appName))
+        $class = new $className();
+        if (!method_exists($class, $appName)) {
             return $this->fail("Responsible method for app name not found in '{$className}' ");
+        }
 
         $response = $class->$appName($data);
-        if (!is_array($response))
-            return $this->fail("Returned data must be array");
+        if (!is_array($response)) {
+            return $this->fail('Returned data must be array');
+        }
 
         $this->response = $response;
 
@@ -60,35 +62,37 @@ class SmartApi
 
     /**
      * @param $appName
+     *
      * @return |null
      */
     private function findAppClass($appName)
     {
-        if (!isset($this->config["appClasses"]))
+        if (!isset($this->config['appClasses'])) {
             return $this->fail("'appClasses' not defined in config");
+        }
 
-        $appClasses = $this->config["appClasses"];
+        $appClasses = $this->config['appClasses'];
 
-        if (isset($appClasses[$appName]))
+        if (isset($appClasses[$appName])) {
             return $appClasses[$appName];
+        }
 
-        if (isset($appClasses["*"]))
-            return $appClasses["*"];
+        if (isset($appClasses['*'])) {
+            return $appClasses['*'];
+        }
 
-
-        return $this->fail("Responsible class for app name not found");
-
+        return $this->fail('Responsible class for app name not found');
     }
 
     /**
      * @param null $message
+     *
      * @return bool
      */
     private function fail($message = null)
     {
         $this->errorMessage = $message;
+
         return false;
     }
-
-
 }

@@ -16,7 +16,7 @@ class EventEmitter
     /**
      * Add new listener fo given event.
      *
-     * @param string $event
+     * @param string   $event
      * @param callable $listener
      *
      * @return void
@@ -34,7 +34,7 @@ class EventEmitter
      * Remove given listener from a specefic event.
      * if we call this method without listener, it will totaly remove the given event and all of its listeners.
      *
-     * @param string $event
+     * @param string   $event
      * @param callable $listener
      *
      * @return void
@@ -64,7 +64,7 @@ class EventEmitter
      * Run event listeners.
      *
      * @param string $event
-     * @param array ...$arguments
+     * @param array  ...$arguments
      *
      * @return void
      */
@@ -85,7 +85,7 @@ class EventEmitter
      * Call events by their name.
      *
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return void
      */
