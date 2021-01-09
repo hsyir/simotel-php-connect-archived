@@ -6,18 +6,12 @@ use Hsy\Simotel\Simotel;
 
 class SimotelApiTest extends TestCase
 {
-    private $config = [
-        'simotelApi' => [
-            'user'          => 'hsy',
-            'pass'          => 'hsy',
-            'requestMethod' => 'POST',
-            'serverAddress' => 'http://37.156.144.147/api/v1/',
-        ],
-    ];
+
 
     public function testAddQueue()
     {
-        $simotel = new Simotel($this->config);
-        $simotel->connect()->addToQueue('202', '202', '200');
+        $simotel = new Simotel();
+        $response = $simotel->connect()->pbx()->users()->add("user-name","200","secret");
+        var_dump($response);
     }
 }
