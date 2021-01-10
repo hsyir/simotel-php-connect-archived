@@ -10,6 +10,7 @@ return [
         "connect" => [
             'user' => 'hsy',
             'pass' => 'asd123ASD',
+            'token' => "7c26y2qfWIsw09kMVvf6dSu8Oc0hvBEdlWI469FWguaLOBZoBn",
             'serverAddress' => 'http://37.156.144.147/api/v3/',
         ],
         "defaults" => [

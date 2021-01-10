@@ -12,23 +12,32 @@ class SimotelApiCenter
 
     public function __construct(array $config = [])
     {
+        $this->setConfig($config);
+    }
+
+    public function setConfig(array $config)
+    {
         $this->config = $config;
     }
 
-    protected function call($uri, $data, $method = "POST")
-    {
 
-        $options = [
+    public function getOptions()
+    {
+        return [
             'auth' => [
                 $this->config["connect"]['user'] ?? '', //basic auth username
                 $this->config["connect"]['pass'] ?? '',  //basic auth password
             ],
             'headers' => [
-                'X-APIKEY' => "7c26y2qfWIsw09kMVvf6dSu8Oc0hvBEdlWI469FWguaLOBZoBn"
+                'X-APIKEY' => $this->config["connect"]['token'],
             ],
-            "json" => $data
         ];
+    }
 
+    protected function call($uri, $requestBody = [], $method = "POST")
+    {
+        $options = $this->getOptions();
+        $options["json"] = $requestBody;
         try {
             // Create a client with a base URI
             $client = $this->getHttpClient();
@@ -47,4 +56,5 @@ class SimotelApiCenter
             'base_uri' => $this->config["connect"]['serverAddress']
         ]);
     }
+
 }
