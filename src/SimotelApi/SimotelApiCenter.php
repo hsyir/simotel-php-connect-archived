@@ -11,6 +11,7 @@ use Hsy\Simotel\SimotelApi\Exceptions\SimotelApiConfigException;
 class SimotelApiCenter extends Simotel
 {
     protected $config;
+
     /**
      * @var Client
      */
@@ -26,7 +27,7 @@ class SimotelApiCenter extends Simotel
         $this->setConfig($config);
         $this->client = $client ?: $this->makeHttpClient();
 
-        parent::__construct($this->config);
+        parent::__construct();
     }
 
     /**
