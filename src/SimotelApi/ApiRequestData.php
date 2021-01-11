@@ -4,12 +4,11 @@
 namespace Hsy\Simotel\SimotelApi;
 
 
-class ApiRequestDataMaker
+class ApiRequestData
 {
     private $config;
     private $method;
     private $userDataInput;
-
 
     public $uri, $data, $requestMethod;
 
