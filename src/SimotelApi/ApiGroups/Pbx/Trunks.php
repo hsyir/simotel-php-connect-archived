@@ -5,7 +5,7 @@ namespace Hsy\Simotel\SimotelApi\Pbx;
 
 use Hsy\Simotel\SimotelApi\SimotelApiCenter;
 
-class Users extends SimotelApiCenter
+class Trunks extends SimotelApiCenter
 {
-    protected $apiAddressConfigPrefix = "pbx_users_";
+    protected $apiAddressConfigPrefix = "pbx_trunks_";
 }

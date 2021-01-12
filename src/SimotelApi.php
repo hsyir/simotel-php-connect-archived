@@ -3,7 +3,7 @@
 namespace Hsy\Simotel;
 
 use GuzzleHttp\Client;
-use Hsy\Simotel\SimotelApi\Pbx;
+use Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 
 class SimotelApi
 {
