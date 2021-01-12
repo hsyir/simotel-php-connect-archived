@@ -20,7 +20,7 @@
   },
   "minimum-stability": "dev",
   "require": {
-    "guzzlehttp/guzzle": ">=7",
+    "guzzlehttp/guzzle": ">=6.5",
     "ext-json": "*"
   },
   "require-dev": {
