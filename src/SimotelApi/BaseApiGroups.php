@@ -20,9 +20,10 @@ class BaseApiGroups
         $httpClient = $arguments[1] ?? null;
 
         $className = $this->namespace . ucfirst($name);
+        var_dump($className);
         if (class_exists($className))
             return new $className($config, $httpClient);
         else
-            throw new \Exception("class $name not found");
+            throw new \Exception("class $className not found");
     }
 }
