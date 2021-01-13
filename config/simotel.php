@@ -8,10 +8,10 @@ return [
     ],
     'simotelApi' => [
         'connect' => [
-            'user'           => 'hsy',
-            'pass'           => 'asd123ASD',
-            'token'          => '7c26y2qfWIsw09kMVvf6dSu8Oc0hvBEdlWI469FWguaLOBZoBn',
-            'server_address' => 'http://37.156.144.147/api/v3/',
+            'user'           => 'apiUser',
+            'pass'           => 'apiPass',
+            'token'          => 'apiToken',
+            'server_address' => 'http://simotelServer',
 
         ],
         'methods' => [
