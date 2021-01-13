@@ -2,7 +2,6 @@
 
 namespace Hsy\Simotel;
 
-use GuzzleHttp\Client;
 use Hsy\Simotel\SimotelApi\ApiGroups\Autodialer;
 use Hsy\Simotel\SimotelApi\ApiGroups\Call;
 use Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
@@ -18,7 +17,6 @@ class SimotelApi
     {
         $this->config = $config;
     }
-
 
     public function pbx()
     {
@@ -44,5 +42,4 @@ class SimotelApi
     {
         return new Autodialer($this->config);
     }
-
 }

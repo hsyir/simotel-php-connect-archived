@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel\SimotelApi;
-
 
 class Parameters
 {
@@ -22,5 +20,4 @@ class Parameters
     {
         return $this->data;
     }
-
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel\SimotelApi;
-
 
 class BaseApiGroups
 {
@@ -15,14 +13,14 @@ class BaseApiGroups
 
     public function __call($name, $arguments)
     {
-
         $config = $arguments[0] ?? $this->config;
         $httpClient = $arguments[1] ?? null;
 
-        $className = $this->namespace . ucfirst($name);
-        if (class_exists($className))
+        $className = $this->namespace.ucfirst($name);
+        if (class_exists($className)) {
             return new $className($config, $httpClient);
-        else
+        } else {
             throw new \Exception("class $className not found");
+        }
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel\SimotelApi;
-
 
 use GuzzleHttp\Client;
 use Hsy\Simotel\Simotel;
@@ -19,7 +17,8 @@ class SimotelApiCenter extends Simotel
 
     /**
      * SimotelApiCenter constructor.
-     * @param array|null $config
+     *
+     * @param array|null  $config
      * @param Client|null $client
      */
     public function __construct(array $config = null, Client $client = null)
@@ -35,7 +34,7 @@ class SimotelApiCenter extends Simotel
      */
     public function setConfig(array $config = null)
     {
-        $this->config = $config ?: $this->loadDefaultConfig()["simotelApi"];
+        $this->config = $config ?: $this->loadDefaultConfig()['simotelApi'];
     }
 
     /**
@@ -45,28 +44,31 @@ class SimotelApiCenter extends Simotel
     {
         return [
             'auth' => [
-                $this->config["connect"]['user'] ?? '', //basic auth username
-                $this->config["connect"]['pass'] ?? '',  //basic auth password
+                $this->config['connect']['user'] ?? '', //basic auth username
+                $this->config['connect']['pass'] ?? '',  //basic auth password
             ],
             'headers' => [
-                'X-APIKEY' => $this->config["connect"]['token'],
+                'X-APIKEY' => $this->config['connect']['token'],
             ],
         ];
     }
 
     /**
      * @param $uri
-     * @param array $requestBody
+     * @param array  $requestBody
      * @param string $method
-     * @return bool|string
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return bool|string
      */
-    protected function sendRequest($uri, $requestBody = [], $method = "POST")
+    protected function sendRequest($uri, $requestBody = [], $method = 'POST')
     {
         $options = $this->makeHttpRequestOptions();
-        $options["json"] = $requestBody;
+        $options['json'] = $requestBody;
 
         $response = $this->client->request($method, $uri, $options);
+
         return new Response($response);
     }
 
@@ -76,41 +78,40 @@ class SimotelApiCenter extends Simotel
     protected function makeHttpClient()
     {
         return new Client([
-            'base_uri' => $this->config["connect"]['server_address']
+            'base_uri' => $this->config['connect']['server_address'],
         ]);
     }
-
 
     /**
      * @param $methodName
      * @param $arguments
+     *
      * @throws SimotelApiConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function __call($methodName, $arguments)
     {
-
-        if (!isset($this->config["methods"][$this->makeConfigKey($methodName)]))
+        if (!isset($this->config['methods'][$this->makeConfigKey($methodName)])) {
             throw new SimotelApiConfigException("method '$methodName' not defined in simotel api config");
-
+        }
 
         $parameters = $arguments[0] ?? [];
         $userDataInput = $parameters instanceof Parameters ? $parameters->toArray() : $parameters;
 
-        $config = $this->config["methods"][$this->makeConfigKey($methodName)];
+        $config = $this->config['methods'][$this->makeConfigKey($methodName)];
 
         $apiDataMaker = new ApiRequestData($config, $methodName, $userDataInput);
 
         return $this->sendRequest($apiDataMaker->uri, $apiDataMaker->data, $apiDataMaker->requestMethod);
     }
 
-
     /**
      * @param $methodName
+     *
      * @return string
      */
     protected function makeConfigKey($methodName)
     {
-        return $this->apiAddressConfigPrefix . $methodName;
+        return $this->apiAddressConfigPrefix.$methodName;
     }
 }

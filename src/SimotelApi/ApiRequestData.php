@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hsy\Simotel\SimotelApi;
-
 
 class ApiRequestData
 {
@@ -10,7 +8,9 @@ class ApiRequestData
     private $method;
     private $userDataInput;
 
-    public $uri, $data, $requestMethod;
+    public $uri;
+    public $data;
+    public $requestMethod;
 
     public function __construct($config, $method, $userDataInput)
     {
@@ -19,7 +19,6 @@ class ApiRequestData
         $this->userDataInput = $userDataInput;
 
         $this->prepareData();
-
     }
 
     private function prepareData()
@@ -29,8 +28,8 @@ class ApiRequestData
             $this->method
         );
 
-        $this->uri = $this->config["address"];
-        $this->requestMethod = $this->config["request_method"];
+        $this->uri = $this->config['address'];
+        $this->requestMethod = $this->config['request_method'];
     }
 
     private function makeRequestBody(array $inputs, string $defaultKey)
@@ -40,14 +39,11 @@ class ApiRequestData
 
     private function getDefaultRequestBody(string $methodName)
     {
-        return $this->config["default_request_data"] ?? [];
+        return $this->config['default_request_data'] ?? [];
     }
-
 
     private function makeUriAddress($methodName)
     {
-        return $this->config["api_addresses"][$this->makeConfigKey($methodName)];
+        return $this->config['api_addresses'][$this->makeConfigKey($methodName)];
     }
-
-
 }
