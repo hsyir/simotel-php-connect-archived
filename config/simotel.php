@@ -243,6 +243,12 @@ secret=as#3591011020",
                 "request_method" => "GET",
             ],
 
+            // pbx/musicOnHolds
+            "pbx_music_on_holds_search" => [
+                "address" => "pbx/musiconholds/search",
+                "request_method" => "GET",
+            ],
+
             // pbx/faxes
             "pbx_faxes_upload" => [
                 "address" => "pbx/faxes/upload",
