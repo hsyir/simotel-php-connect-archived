@@ -3,7 +3,11 @@
 namespace Hsy\Simotel;
 
 use GuzzleHttp\Client;
+use Hsy\Simotel\SimotelApi\ApiGroups\Autodialer;
+use Hsy\Simotel\SimotelApi\ApiGroups\Call;
 use Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
+use Hsy\Simotel\SimotelApi\ApiGroups\Reports;
+use Hsy\Simotel\SimotelApi\ApiGroups\Voicemails;
 
 class SimotelApi
 {
@@ -21,57 +25,24 @@ class SimotelApi
         return new Pbx($this->config);
     }
 
+    public function call()
+    {
+        return new Call($this->config);
+    }
 
-    /*
-        public function getMessage()
-        {
-            return $this->message;
-        }
+    public function voicemails()
+    {
+        return new Voicemails($this->config);
+    }
 
-        public function addToQueue($queue, $source, $agent, $penalty = 0)
-        {
-            $query = "queue/add/?queue={$queue}&source={$source}&agent={$agent}&penalty={$penalty}";
+    public function reports()
+    {
+        return new Reports($this->config);
+    }
 
-            return $this->call($query);
-        }
-
-        public function removeFromQueue($queue, $agent)
-        {
-            $query = "/queue/remove/?queue={$queue}&agent={$agent}";
-
-            return $this->call($query);
-        }
-
-        public function pauseInQueue($queue, $agent)
-        {
-            $query = "/queue/pause/?queue={$queue}&agent={$agent}";
-
-            return $this->call($query);
-        }
-
-        public function resumeInQueue($queue, $agent)
-        {
-            $query = "/queue/resume/?queue={$queue}&agent={$agent}";
-
-            return $this->call($query);
-        }
-
-        public function pbxUsersSearch($data = [])
-        {
-            $default = [
-                'status'     => 'all',
-                'alike'      => 1,
-                'conditions' => [
-                    'name'   => '',
-                    'number' => '',
-                    'mapped' => '',
-                ],
-            ];
-
-            $data = array_merge($default, $data);
-
-            $this->call($uri, $data);
-        }
-    */
+    public function autodialer()
+    {
+        return new Autodialer($this->config);
+    }
 
 }

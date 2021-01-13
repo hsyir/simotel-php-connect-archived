@@ -16,10 +16,12 @@ class BaseApiGroups
     public function __call($name, $arguments)
     {
 
-        $className = $this->namespace . ucfirst($name)  ;
-        var_dump($className);
-        if(class_exists($className))
-            return new $className($this->config);
+        $config = $arguments[0] ?? $this->config;
+        $httpClient = $arguments[1] ?? null;
+
+        $className = $this->namespace . ucfirst($name);
+        if (class_exists($className))
+            return new $className($config, $httpClient);
         else
             throw new \Exception("class $name not found");
     }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Hsy\Simotel\SimotelApi\Pbx;
+namespace Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 
 use Hsy\Simotel\SimotelApi\SimotelApiCenter;
 

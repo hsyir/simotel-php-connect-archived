@@ -1,8 +1,9 @@
 <?php
 
 
-namespace Hsy\Simotel\SimotelApi\Pbx;
+namespace Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 
+use GuzzleHttp\Client;
 use Hsy\Simotel\SimotelApi\SimotelApiCenter;
 
 class MusicOnHolds extends SimotelApiCenter

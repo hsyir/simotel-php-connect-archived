@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Hsy\Simotel\SimotelApi\Pbx;
+namespace Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 
 use Hsy\Simotel\SimotelApi\SimotelApiCenter;
 
 class WhiteLists extends SimotelApiCenter
 {
-    protected $apiAddressConfigPrefix = "pbx_white_lists_";
+    protected $apiAddressConfigPrefix = "pbx_whitelists_";
 }

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Hsy\Simotel\SimotelApi\Pbx;
+namespace Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 
 use Hsy\Simotel\SimotelApi\SimotelApiCenter;
 
 class BlackLists extends SimotelApiCenter
 {
-    protected $apiAddressConfigPrefix = "pbx_black_lists_";
+    protected $apiAddressConfigPrefix = "pbx_blacklists_";
 }
