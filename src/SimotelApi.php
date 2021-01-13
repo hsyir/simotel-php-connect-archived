@@ -19,25 +19,37 @@ class SimotelApi
         $this->config = $config;
     }
 
+    /**
+     * @param $name
+     * @param $arguments
+     * @return __anonymous|BaseApiGroups|__anonymous@1023
+     * @throws \Exception
+     */
     public function __call($name, $arguments)
     {
         $name = ucfirst($name);
-
         $groupClasses = ["Pbx", "Autodialer", "Call", "Reports", "Voicemails"];
+
         if (!in_array($name, $groupClasses))
             throw new \Exception("api group class not found: '{$name}'");
 
         return $this->makeApiGroupClass($name, $this->config);
     }
 
-    private function makeApiGroupClass($name, $config)
+    /**
+     * @param $className
+     * @param $config
+     * @return BaseApiGroups|__anonymous@923
+     */
+    private function makeApiGroupClass($className, $config)
     {
-        return new class ($name, $config) extends BaseApiGroups {
+        return new class ($className, $config) extends BaseApiGroups {
+
             protected $namespace;
 
-            public function __construct($name, array $config = [])
+            public function __construct($className, array $config = [])
             {
-                $this->namespace = "\\Hsy\\Simotel\\SimotelApi\\ApiGroups\\$name\\";
+                $this->namespace = "\\Hsy\\Simotel\\SimotelApi\\ApiGroups\\$className\\";
                 parent::__construct($config);
             }
         };
