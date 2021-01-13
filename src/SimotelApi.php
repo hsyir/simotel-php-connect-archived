@@ -21,16 +21,18 @@ class SimotelApi
 
     public function __call($name, $arguments)
     {
-        $groupClasses = ["pbx", "autodialer", "call", "reports", "voicemails"];
+        $name = ucfirst($name);
+
+        $groupClasses = ["Pbx", "Autodialer", "Call", "Reports", "Voicemails"];
         if (!in_array($name, $groupClasses))
-            throw new \Exception("api group class not found: '$name'");
+            throw new \Exception("api group class not found: '{$name}'");
 
         return $this->makeApiGroupClass($name, $this->config);
     }
 
     private function makeApiGroupClass($name, $config)
     {
-        return new class (ucfirst($name), $config) extends BaseApiGroups {
+        return new class ($name, $config) extends BaseApiGroups {
             protected $namespace;
 
             public function __construct($name, array $config = [])
