@@ -7,6 +7,7 @@ use Hsy\Simotel\SimotelApi\ApiGroups\Call;
 use Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
 use Hsy\Simotel\SimotelApi\ApiGroups\Reports;
 use Hsy\Simotel\SimotelApi\ApiGroups\Voicemails;
+use Hsy\Simotel\SimotelApi\BaseApiGroups;
 
 class SimotelApi
 {
@@ -18,28 +19,25 @@ class SimotelApi
         $this->config = $config;
     }
 
-    public function pbx()
+    public function __call($name, $arguments)
     {
-        return new Pbx($this->config);
+        $groupClasses = ["pbx", "autodialer", "call", "reports", "voicemails"];
+        if (!in_array($name, $groupClasses))
+            throw new \Exception("api group class not found: '$name'");
+
+        return $this->makeApiGroupClass($name, $this->config);
     }
 
-    public function call()
+    private function makeApiGroupClass($name, $config)
     {
-        return new Call($this->config);
-    }
+        return new class (ucfirst($name), $config) extends BaseApiGroups {
+            protected $namespace;
 
-    public function voicemails()
-    {
-        return new Voicemails($this->config);
-    }
-
-    public function reports()
-    {
-        return new Reports($this->config);
-    }
-
-    public function autodialer()
-    {
-        return new Autodialer($this->config);
+            public function __construct($name, array $config = [])
+            {
+                $this->namespace = "\\Hsy\\Simotel\\SimotelApi\\ApiGroups\\$name\\";
+                parent::__construct($config);
+            }
+        };
     }
 }
