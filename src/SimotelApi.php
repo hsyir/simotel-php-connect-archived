@@ -2,24 +2,32 @@
 
 namespace Hsy\Simotel;
 
-use Hsy\Simotel\SimotelApi\ApiGroups\Autodialer;
-use Hsy\Simotel\SimotelApi\ApiGroups\Call;
-use Hsy\Simotel\SimotelApi\ApiGroups\Pbx;
-use Hsy\Simotel\SimotelApi\ApiGroups\Reports;
-use Hsy\Simotel\SimotelApi\ApiGroups\Voicemails;
 use Hsy\Simotel\SimotelApi\BaseApiGroups;
 
 class SimotelApi
 {
-    /*  private $message = '';*/
+    /**
+     *
+     * simotel api config
+     *
+     * @var array
+     */
     private $config;
 
+    /**
+     * SimotelApi constructor.
+     *
+     * @param array $config
+     */
     public function __construct(array $config = [])
     {
         $this->config = $config;
     }
 
     /**
+     *
+     * return instance of called api group class
+     *
      * @param $name
      * @param $arguments
      * @return __anonymous|BaseApiGroups|__anonymous@1023
@@ -37,6 +45,9 @@ class SimotelApi
     }
 
     /**
+     *
+     * create and return the dynamic class of api group
+     *
      * @param $className
      * @param $config
      * @return BaseApiGroups|__anonymous@923

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hsy\Simotel;
+namespace Hsy\Simotel\SimotelEventApi;
 
 class EventEmitter
 {

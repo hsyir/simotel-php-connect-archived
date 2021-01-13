@@ -3,7 +3,7 @@
 namespace Hsy\Simotel\Tests;
 
 use Hsy\Simotel\Simotel;
-use Hsy\Simotel\SmartApiCommands;
+use Hsy\Simotel\SimotelSmartApi\SmartApiCommands;
 
 class SmartApiTest extends TestCase
 {
