@@ -1,12 +1,12 @@
 <?php
 
-
 namespace Hsy\Simotel\SimotelApi;
-
 
 class Response
 {
-    public $success, $message, $data;
+    public $success;
+    public $message;
+    public $data;
 
     public function __construct($respons)
     {
