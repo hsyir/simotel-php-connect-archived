@@ -94,7 +94,7 @@ class SimotelApiCenter extends Simotel
             throw new SimotelApiConfigException("method '$methodName' not defined in simotel api config");
 
 
-        $parameters = $arguments[0];
+        $parameters = $arguments[0] ?? [];
         $userDataInput = $parameters instanceof Parameters ? $parameters->toArray() : $parameters;
 
         $config = $this->config["methods"][$this->makeConfigKey($methodName)];
